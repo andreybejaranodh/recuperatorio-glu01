@@ -4,7 +4,14 @@ const Op = db.Sequelize.Op;
 const controller = {
     async index(req, res) {
         try {
-            const productos = await db.Product.findAll();
+            const productos = await db.Product.findAll(
+                {
+                include: {
+                    model: db.ProductCategory,
+                    as: "product_categories"
+                }
+            }
+            );
             res.json(productos);
         }
         catch {
