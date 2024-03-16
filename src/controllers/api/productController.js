@@ -3,7 +3,15 @@ const Op = db.Sequelize.Op;
 
 const controller = {
     async index(req, res) {
-        res.json("Hola")
+        try {
+            const productos = await db.Product.findAll();
+            res.json(productos);
+        }
+        catch {
+            res.status(500).json({
+                error: "Hubo un problema para obtener los productos"
+            })
+        }
         // Crear controlador para retornar todos los productos
     },
     async create (req, res) {
