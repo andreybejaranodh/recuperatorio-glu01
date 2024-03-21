@@ -6,6 +6,6 @@ const router = express.Router();
 
 // Implementar logica para retornar todos los productos
 router.get('/', productController.index);
-// router.???('/', productController.create);
+router.post('/', productController.create);
 
 module.exports = router;
